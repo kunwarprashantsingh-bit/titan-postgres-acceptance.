@@ -1,0 +1,25 @@
+{
+  "name": "TITAN PostgreSQL 18.6 Acceptance",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:4": {
+      "version": "latest",
+      "moby": true,
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "4gb",
+    "storage": "16gb"
+  },
+  "remoteUser": "vscode",
+  "postCreateCommand": "bash .devcontainer/post_create.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-containers"
+      ]
+    }
+  }
+}
