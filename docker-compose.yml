@@ -1,0 +1,147 @@
+name: titan-pg-live-acceptance
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: titan-postgres-acceptance:18.6-v1.0
+    entrypoint: ["titan-db-entrypoint"]
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${TITAN_POSTGRES_PASSWORD:-TITAN_acceptance_only_18_6}
+      POSTGRES_DB: postgres
+      POSTGRES_INITDB_ARGS: "--data-checksums --encoding=UTF8"
+      TZ: UTC
+    command:
+      - postgres
+      - -c
+      - archive_mode=on
+      - -c
+      - archive_command=test ! -f /wal_archive/%f && cp %p /wal_archive/%f
+      - -c
+      - wal_level=replica
+      - -c
+      - max_connections=120
+      - -c
+      - log_min_messages=warning
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 60
+      start_period: 5s
+    volumes:
+      - pgdata:/var/lib/postgresql
+      - wal_archive:/wal_archive
+      - pitr_data:/pitr
+    networks:
+      - titan_acceptance_net
+    restart: "no"
+
+  runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: titan-postgres-acceptance:18.6-v1.0
+    depends_on:
+      db:
+        condition: service_healthy
+    entrypoint: ["bash", "/workspace/docker/run_all.sh"]
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGPASSWORD: ${TITAN_POSTGRES_PASSWORD:-TITAN_acceptance_only_18_6}
+      PGDATABASE: postgres
+      TZ: UTC
+    volumes:
+      - ./core:/workspace/core:ro
+      - ./docker:/workspace/docker:ro
+      - ./artifacts:/workspace/artifacts
+    networks:
+      - titan_acceptance_net
+    restart: "no"
+
+  pitr-prep:
+    profiles: ["pitr"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: titan-postgres-acceptance:18.6-v1.0
+    depends_on:
+      db:
+        condition: service_healthy
+    entrypoint: ["bash", "/workspace/docker/pitr_prepare.sh"]
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGPASSWORD: ${TITAN_POSTGRES_PASSWORD:-TITAN_acceptance_only_18_6}
+      PGDATABASE: postgres
+      TITAN_ACCEPTANCE_DB: titan_acceptance_full_docker
+      TZ: UTC
+    volumes:
+      - pitr_data:/pitr
+      - wal_archive:/wal_archive
+      - ./docker:/workspace/docker:ro
+      - ./artifacts:/workspace/artifacts
+    networks:
+      - titan_acceptance_net
+    restart: "no"
+
+  pitr-db:
+    profiles: ["pitr"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: titan-postgres-acceptance:18.6-v1.0
+    environment:
+      TZ: UTC
+    volumes:
+      - pitr_data:/var/lib/postgresql
+      - wal_archive:/wal_archive:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 90
+      start_period: 5s
+    networks:
+      - titan_acceptance_net
+    restart: "no"
+
+  pitr-verify:
+    profiles: ["pitr"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: titan-postgres-acceptance:18.6-v1.0
+    depends_on:
+      pitr-db:
+        condition: service_healthy
+    entrypoint: ["bash", "/workspace/docker/pitr_verify.sh"]
+    environment:
+      PGHOST: pitr-db
+      PGPORT: "5432"
+      PGUSER: postgres
+      PGPASSWORD: ${TITAN_POSTGRES_PASSWORD:-TITAN_acceptance_only_18_6}
+      PGDATABASE: postgres
+      TITAN_ACCEPTANCE_DB: titan_acceptance_full_docker
+      TZ: UTC
+    volumes:
+      - ./core:/workspace/core:ro
+      - ./docker:/workspace/docker:ro
+      - ./artifacts:/workspace/artifacts
+    networks:
+      - titan_acceptance_net
+    restart: "no"
+
+volumes:
+  pgdata:
+  wal_archive:
+  pitr_data:
+
+networks:
+  titan_acceptance_net:
+    driver: bridge
