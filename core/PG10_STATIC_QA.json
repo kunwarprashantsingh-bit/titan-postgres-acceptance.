@@ -1,0 +1,300 @@
+{
+  "qa": {
+    "migration_count": 20,
+    "test_suite_count": 11,
+    "numbered_assertion_count": 229,
+    "unique_table_count": 245,
+    "view_count": 7,
+    "function_definition_count": 47,
+    "duplicate_table_creates": [],
+    "reference_before_create": [],
+    "migration_transaction_failures": [],
+    "destructive_sql_drops": [],
+    "test_contract_failures": [],
+    "tests_without_rollback": [
+      "T002__pg01b_site_promotion_tests.sql"
+    ],
+    "shell_syntax_failures": [],
+    "pg10_roles": 10,
+    "pg10_work_item_rls_policies": 6,
+    "live_postgresql_execution": "NOT_PERFORMED_IN_CURRENT_RUNTIME",
+    "load_execution": "NOT_PERFORMED_IN_CURRENT_RUNTIME",
+    "restore_execution": "NOT_PERFORMED_IN_CURRENT_RUNTIME",
+    "pitr_execution": "NOT_PERFORMED_IN_CURRENT_RUNTIME",
+    "distinct_assertion_label_tokens": 195
+  },
+  "migrations": [
+    {
+      "file": "V001__pg01_core_registry_geography.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V002__pg01_reference_and_geography_seed.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V003__pg01_migration_staging.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V004__pg01_pilot_manifest.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V005__pg01b_site_resolution_seed.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V006__pg01b_promote_pilot_plants.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V007__pg02_temporal_relationship_core.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V008__pg03_evidence_layer.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V009__pg04_observation_accounting.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V010__pg05_policy_compliance_core.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V011__pg05_verified_policy_seed.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V012__pg06a_ccus_chain_attribute_core.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V013__pg06b_trade_cbam_core.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V014__pg06_verified_ccus_cbam_seed.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V015__pg07_water_nature_corporate_governance.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V016__pg07_current_framework_seed.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V017__pg08_temporal_model_publication_governance.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V018__pg08_current_runtime_reference_seed.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V019__pg10_security_rbac_workflow.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    },
+    {
+      "file": "V020__pg10_operational_monitoring.sql",
+      "begin": true,
+      "commit": true,
+      "balanced_dollar_quotes": true,
+      "destructive_drop": false
+    }
+  ],
+  "tests": [
+    {
+      "file": "T001__pg01_constraint_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 15
+    },
+    {
+      "file": "T002__pg01b_site_promotion_tests.sql",
+      "on_error_stop": true,
+      "rollback": false,
+      "balanced_dollar_quotes": true,
+      "assertions": 6
+    },
+    {
+      "file": "T003__pg02_temporal_relationship_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 23
+    },
+    {
+      "file": "T004__pg03_evidence_layer_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 22
+    },
+    {
+      "file": "T005__pg04_observation_accounting_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 33
+    },
+    {
+      "file": "T006__pg05_policy_compliance_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 35
+    },
+    {
+      "file": "T007__pg06_ccus_trade_integration_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 34
+    },
+    {
+      "file": "T008__pg07_water_nature_corporate_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 19
+    },
+    {
+      "file": "T009__pg08_temporal_model_publication_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 19
+    },
+    {
+      "file": "T010__pg10_security_rbac_rls_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 15
+    },
+    {
+      "file": "T011__pg10_operational_workflow_tests.sql",
+      "on_error_stop": true,
+      "rollback": true,
+      "balanced_dollar_quotes": true,
+      "assertions": 8
+    }
+  ],
+  "shell_scripts": [
+    {
+      "file": "acceptance/run_clean_replay_twice.sh",
+      "bash_syntax_pass": true,
+      "stderr": ""
+    },
+    {
+      "file": "acceptance/run_cumulative_acceptance.sh",
+      "bash_syntax_pass": true,
+      "stderr": ""
+    },
+    {
+      "file": "acceptance/run_full_operational_acceptance.sh",
+      "bash_syntax_pass": true,
+      "stderr": ""
+    },
+    {
+      "file": "acceptance/run_full_replay_twice.sh",
+      "bash_syntax_pass": true,
+      "stderr": ""
+    },
+    {
+      "file": "load/run_optimistic_concurrency.sh",
+      "bash_syntax_pass": true,
+      "stderr": ""
+    },
+    {
+      "file": "load/run_pgbench_smoke.sh",
+      "bash_syntax_pass": true,
+      "stderr": ""
+    },
+    {
+      "file": "recovery/run_logical_restore_drill.sh",
+      "bash_syntax_pass": true,
+      "stderr": ""
+    }
+  ],
+  "patches": [
+    {
+      "patch_id": "PATCH-001",
+      "class": "cumulative migration integrity",
+      "summary": "Remove duplicate titan_ref.assurance_level create/seed from V015; reuse V008 authoritative lookup.",
+      "semantic_impact": "none"
+    },
+    {
+      "patch_id": "PATCH-002",
+      "class": "acceptance replay determinism",
+      "summary": "Use fixed pg_dump --restrict-key only for test schema fingerprints and make PG-09 runner explicitly V001-V018/T001-T009.",
+      "semantic_impact": "none",
+      "original_runner_sha256": "efde8e56724b301af50ec7037082909286ecf08aeba67105179127e0af9fbdfb",
+      "patched_runner_sha256": "13cd6d1adab226c174a656c4ff1c6fed1e4f2dc61479342c0e457fead02244e1"
+    }
+  ]
+}

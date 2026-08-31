@@ -1,0 +1,295 @@
+{
+  "package": "Global Cement Sustainability PostgreSQL PG-10 Operational Hardening",
+  "version": "1.1",
+  "verification_cutoff": "2026-08-30",
+  "qa": {
+    "migration_count": 20,
+    "test_suite_count": 11,
+    "numbered_assertion_count": 229,
+    "unique_table_count": 245,
+    "view_count": 7,
+    "function_definition_count": 47,
+    "duplicate_table_creates": [],
+    "reference_before_create": [],
+    "migration_transaction_failures": [],
+    "destructive_sql_drops": [],
+    "test_contract_failures": [],
+    "tests_without_rollback": [
+      "T002__pg01b_site_promotion_tests.sql"
+    ],
+    "shell_syntax_failures": [],
+    "pg10_roles": 10,
+    "pg10_work_item_rls_policies": 6,
+    "live_postgresql_execution": "NOT_PERFORMED_IN_CURRENT_RUNTIME",
+    "load_execution": "NOT_PERFORMED_IN_CURRENT_RUNTIME",
+    "restore_execution": "NOT_PERFORMED_IN_CURRENT_RUNTIME",
+    "pitr_execution": "NOT_PERFORMED_IN_CURRENT_RUNTIME",
+    "distinct_assertion_label_tokens": 195
+  },
+  "patches": [
+    {
+      "patch_id": "PATCH-001",
+      "class": "cumulative migration integrity",
+      "summary": "Remove duplicate titan_ref.assurance_level create/seed from V015; reuse V008 authoritative lookup.",
+      "semantic_impact": "none"
+    },
+    {
+      "patch_id": "PATCH-002",
+      "class": "acceptance replay determinism",
+      "summary": "Use fixed pg_dump --restrict-key only for test schema fingerprints and make PG-09 runner explicitly V001-V018/T001-T009.",
+      "semantic_impact": "none",
+      "original_runner_sha256": "efde8e56724b301af50ec7037082909286ecf08aeba67105179127e0af9fbdfb",
+      "patched_runner_sha256": "13cd6d1adab226c174a656c4ff1c6fed1e4f2dc61479342c0e457fead02244e1"
+    }
+  ],
+  "files": {
+    "PG10_STATIC_QA.json": {
+      "sha256": "e5f9d5e50af34f047fe7b077c20ef5d9470a62c77921c7e231b00952804d8f45",
+      "bytes": 8129
+    },
+    "acceptance/A001__preflight.sql": {
+      "sha256": "1b8bafeeb8761b9c9ad8b9304f2f6f4edd27d87e934e9010b02272670fe2050f",
+      "bytes": 1075
+    },
+    "acceptance/A002__post_migration_gate.sql": {
+      "sha256": "6ae6dd65ddcdc3d4f6f0451ae730ff8408f418723ea06f483b8c3a78fa9af8ac",
+      "bytes": 3156
+    },
+    "acceptance/A003__post_test_integrity.sql": {
+      "sha256": "a6dfb704e31bfcccdfc0ad63c0524cb00e8c8169e24bbe534b8730dafcee1d4a",
+      "bytes": 1191
+    },
+    "acceptance/PATCH_LEDGER.md": {
+      "sha256": "dd103ae614c09a5c6fa630d241e38f5650e3a5809bc4c9c751c5142a8cd3b67e",
+      "bytes": 1524
+    },
+    "acceptance/pg10/A010__security_preflight.sql": {
+      "sha256": "b270721acfba413af8c67e2aff567c8222de517e85d9f669c841d72310a344e9",
+      "bytes": 763
+    },
+    "acceptance/pg10/A011__post_security_gate.sql": {
+      "sha256": "2569abd536c6310235ac2a91134ebe525e869071f3b1267ef1c19eff11df50a3",
+      "bytes": 3640
+    },
+    "acceptance/pg10/A012__post_operational_test_gate.sql": {
+      "sha256": "67a03e468569251d5b64df1c559a2b74743317ef5dd8be1b4987947c558cdd98",
+      "bytes": 1034
+    },
+    "acceptance/pg10/A013__table_inventory.sql": {
+      "sha256": "7fecec00ee8e1bab78f638b8786ec82fbeb6e5e2397bcfe5a708f38e7f845d0d",
+      "bytes": 725
+    },
+    "acceptance/run_clean_replay_twice.sh": {
+      "sha256": "547003e691b498d0f824db87e21fa61730d272e7869907564baddc1e91e56884",
+      "bytes": 635
+    },
+    "acceptance/run_cumulative_acceptance.sh": {
+      "sha256": "13cd6d1adab226c174a656c4ff1c6fed1e4f2dc61479342c0e457fead02244e1",
+      "bytes": 2445
+    },
+    "acceptance/run_full_operational_acceptance.sh": {
+      "sha256": "7a139e991afe778e114e9f9ba08c011a624dd5a11e74ec188ee068614b43e2b0",
+      "bytes": 2847
+    },
+    "acceptance/run_full_replay_twice.sh": {
+      "sha256": "cce3bd5bfe949290d80a5856064473cf440520357e82f141c6888d2c878f2b5c",
+      "bytes": 666
+    },
+    "data/pg01_pilot_manifest.csv": {
+      "sha256": "0033f29507aa5a5b7876e394d38a4baa11d104226c5e0ee47effccd5313d5b52",
+      "bytes": 1389
+    },
+    "docs/README_PG01.md": {
+      "sha256": "247dbec19a45fcc60d2c896018f059e04f45c345ddfd922dd9b0356325bfc9bf",
+      "bytes": 4625
+    },
+    "docs/README_PG02.md": {
+      "sha256": "264215eb788e8ac7f17ebae0863cba32ab3e2d16066096c7885aa5181cfb8c23",
+      "bytes": 1857
+    },
+    "docs/README_PG03.md": {
+      "sha256": "9eeda7e3b6890ca4acf033276fde164ec85a951481acbc8fdd2c62aac71d316f",
+      "bytes": 2056
+    },
+    "docs/README_PG04.md": {
+      "sha256": "19e01ab235e821ce4db63854e573bf6c9af8167d32567909829b537ff47b9cd7",
+      "bytes": 2584
+    },
+    "docs/README_PG05.md": {
+      "sha256": "f3fef8d6c2a6e1829caef8acbcd3d1136897103d0eda3c5400228479c88b3dcc",
+      "bytes": 2559
+    },
+    "docs/README_PG06.md": {
+      "sha256": "c7ea41ce2dc58b90ba7d81044ddaa0726d5fdccae2866b699c28c83187bad787",
+      "bytes": 2437
+    },
+    "docs/README_PG07.md": {
+      "sha256": "b037a3b0013ae18e4243fd81ebdbab70b1e4801c59786152b2510c6b54dd8cc0",
+      "bytes": 1894
+    },
+    "docs/README_PG08.md": {
+      "sha256": "04681003728b89fe9c1e44f1d9eaeeea65505627f35f21d6025076822a394030",
+      "bytes": 1968
+    },
+    "docs/README_PG09_ACCEPTANCE.md": {
+      "sha256": "22ddb262596e7cb37adc790b6511b436395223c3f1b05543c559f0372069b47e",
+      "bytes": 1999
+    },
+    "docs/README_PG10.md": {
+      "sha256": "b08f90a78b39d3cdd07af5643dbe222de5f75a10dc2f18d18dad27500ea4c7e9",
+      "bytes": 1933
+    },
+    "docs/SITE_IDENTITY_GATE.md": {
+      "sha256": "d294664539a77e50dbb42d381347e4fda64d0a545440c6b55cd65c2bfb6b07a0",
+      "bytes": 2038
+    },
+    "load/pgbench_insert_probe.sql": {
+      "sha256": "1fe5de0947974deee04a7ea4c259b91af3edd62b8b50baa4eb3135b14b5c4ff9",
+      "bytes": 233
+    },
+    "load/run_optimistic_concurrency.sh": {
+      "sha256": "aa37d59076d8af8bd6ab810f9b8ae88340bbb027357dbfe07f8686134208dab0",
+      "bytes": 2285
+    },
+    "load/run_pgbench_smoke.sh": {
+      "sha256": "1ff7b073c3dd8dbfc056d74742ef1cb6577ad51d39837a89f42d32e85fb3ef1b",
+      "bytes": 2257
+    },
+    "recovery/PITR_DRILL_CONTRACT.md": {
+      "sha256": "9eb0ce4c65c362857a99519be1936bce1a072bf215c75885cc97e602a78ff9eb",
+      "bytes": 2412
+    },
+    "recovery/run_logical_restore_drill.sh": {
+      "sha256": "f62e97039c0248d8177c0eedc2264bc497323fa64d33d07afb8b122a0e49ae3b",
+      "bytes": 2675
+    },
+    "sql/T001__pg01_constraint_tests.sql": {
+      "sha256": "6a5cd44b5258078ec66d2cb62cf75930264b5ebb001346951b203ee68f732a41",
+      "bytes": 7051
+    },
+    "sql/T002__pg01b_site_promotion_tests.sql": {
+      "sha256": "c7233a1e514640fed4d49b3afadcde16a86ffa4084bd9144045cd9720e6b0e09",
+      "bytes": 3699
+    },
+    "sql/T003__pg02_temporal_relationship_tests.sql": {
+      "sha256": "9c7ec92de58cd49c90b30c5cd1bf7a13aaceb7ebf2c6013de820671d0e03ed3e",
+      "bytes": 9493
+    },
+    "sql/T004__pg03_evidence_layer_tests.sql": {
+      "sha256": "371fe34c09c68397424ede86578e67ef1f16e630e25a1e42c2eff45546487061",
+      "bytes": 11410
+    },
+    "sql/T005__pg04_observation_accounting_tests.sql": {
+      "sha256": "22a60a88063fd2f8ddffb78fd35a2f8272c856912793d503483c5206a09c7868",
+      "bytes": 26992
+    },
+    "sql/T006__pg05_policy_compliance_tests.sql": {
+      "sha256": "4c334d29124cf118c99a2cc5d899a47f084a044dec3f19761c4767a87e67aa44",
+      "bytes": 25196
+    },
+    "sql/T007__pg06_ccus_trade_integration_tests.sql": {
+      "sha256": "0bc01afa007261c51cd1a11bbcf24fe7473e90a4870441a7862cdc7e2bb11595",
+      "bytes": 29180
+    },
+    "sql/T008__pg07_water_nature_corporate_tests.sql": {
+      "sha256": "c7d5a500387461064c2d4ad99415b1a12d336777f2077524026abd8b40a4c3df",
+      "bytes": 22152
+    },
+    "sql/T009__pg08_temporal_model_publication_tests.sql": {
+      "sha256": "234b7de65409be700cafb757a4e55e766a834ca64f4a00a36387526cd6dfe098",
+      "bytes": 26893
+    },
+    "sql/T010__pg10_security_rbac_rls_tests.sql": {
+      "sha256": "a3145110048360a824c999d73420123cb72733219a3ab487ece786d3b26f0ecc",
+      "bytes": 7795
+    },
+    "sql/T011__pg10_operational_workflow_tests.sql": {
+      "sha256": "d2d278c2a3fb9f05081edee734c55641dd64fb0c8915134a5d25c69784fcabf1",
+      "bytes": 4552
+    },
+    "sql/V001__pg01_core_registry_geography.sql": {
+      "sha256": "56ad1fc77eb6d840f7801fee411f382056c6a710ac64460f63e7fa7bd773816d",
+      "bytes": 13915
+    },
+    "sql/V002__pg01_reference_and_geography_seed.sql": {
+      "sha256": "52912c3226b40f006e060d5064b7107fcf63b3a1efd7c8238b97c7b8d8ca2780",
+      "bytes": 5963
+    },
+    "sql/V003__pg01_migration_staging.sql": {
+      "sha256": "70f1a4adc6b52c2ab52d9c5995762d7d42986521aedba12797c8f0750e3f855d",
+      "bytes": 2221
+    },
+    "sql/V004__pg01_pilot_manifest.sql": {
+      "sha256": "e42d21e174cc6fabb27b00ea6e23406b2f2c39d2cd3c642e762d929ab1857da5",
+      "bytes": 3160
+    },
+    "sql/V005__pg01b_site_resolution_seed.sql": {
+      "sha256": "66b5aee50c425b78785c76ac282fdd4488d1f1da5698978ecdcb33f4793620ab",
+      "bytes": 5107
+    },
+    "sql/V006__pg01b_promote_pilot_plants.sql": {
+      "sha256": "3ff8ef867fe23cf94b7c4aa94a7860157ed987288d773bbc3865683412558ca6",
+      "bytes": 1348
+    },
+    "sql/V007__pg02_temporal_relationship_core.sql": {
+      "sha256": "e39ef8d5ffa8e0ed891bbfb4b39923a49871e20db2778d9a4c0a67fc4e8e7304",
+      "bytes": 19098
+    },
+    "sql/V008__pg03_evidence_layer.sql": {
+      "sha256": "6f732ed01d222cacc3aa8d5f1e9de45ccd4a29979a8594499cf46a785d0c91b2",
+      "bytes": 20343
+    },
+    "sql/V009__pg04_observation_accounting.sql": {
+      "sha256": "0d1485973ef141e22a62ed2cf4bccf917f099cf342c06d2c9f8713e28fa14c7d",
+      "bytes": 40233
+    },
+    "sql/V010__pg05_policy_compliance_core.sql": {
+      "sha256": "86dfc5e1ea45158bb83ad9187e284cd952defa26e324663ffee101bfef8ce4d4",
+      "bytes": 36659
+    },
+    "sql/V011__pg05_verified_policy_seed.sql": {
+      "sha256": "57f6243c1c4929aa7ad9aebffaf5a3236fe34f2a18827fbed2ba83e4f932fa7b",
+      "bytes": 23506
+    },
+    "sql/V012__pg06a_ccus_chain_attribute_core.sql": {
+      "sha256": "7366c9943420c7a1a40efb8a658e1ce91ff71545d7f5367d3f16633c093a74ea",
+      "bytes": 22351
+    },
+    "sql/V013__pg06b_trade_cbam_core.sql": {
+      "sha256": "4f67de7cdac0189b9af5b0e260842f600976807f98c3e4eb92e9ac04d68280df",
+      "bytes": 18284
+    },
+    "sql/V014__pg06_verified_ccus_cbam_seed.sql": {
+      "sha256": "1e42f42e10f3d7ab555b3ceb4247f540a8da90353c7b4ebe714c804a143830f0",
+      "bytes": 19519
+    },
+    "sql/V015__pg07_water_nature_corporate_governance.sql": {
+      "sha256": "1410f759914b7fec5bd9fa5556fe5c8e9c378504504759fb36ac4e3d988c21d1",
+      "bytes": 27430
+    },
+    "sql/V016__pg07_current_framework_seed.sql": {
+      "sha256": "283a7843e4e58af27f2caf33c78836759b73c038109c0135ff25b87d334d65f5",
+      "bytes": 7311
+    },
+    "sql/V017__pg08_temporal_model_publication_governance.sql": {
+      "sha256": "2d0006b072363afa0dc801af1856ec0a628cb19e13e635758d82fb4d4d1da80e",
+      "bytes": 36550
+    },
+    "sql/V018__pg08_current_runtime_reference_seed.sql": {
+      "sha256": "33be9e1ec752894fd059e2373c412980f8a2aafdfb4a81158e3a9d239ae0bbce",
+      "bytes": 2311
+    },
+    "sql/V019__pg10_security_rbac_workflow.sql": {
+      "sha256": "5acdb34eb63f48bca9e2ebff2ecb569d285fa0b30379726f15eb06ee2dcb2e8a",
+      "bytes": 13163
+    },
+    "sql/V020__pg10_operational_monitoring.sql": {
+      "sha256": "cc348cc9894bf9223e6f49e1ac40b276a9a85590dd2e0bb24a89a524da3839e2",
+      "bytes": 5486
+    },
+    "static_cumulative_qa.json": {
+      "sha256": "2571bd795c04e395f8eb3ea6fabb542864af6e94583b8b6886d872df7d7ae131",
+      "bytes": 3147
+    }
+  }
+}
